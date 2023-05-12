@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculadora de descuento de juguetes</title>
+</head>
+<body>
+	<h1>Calculadora de descuento de juguetes</h1>
+	<p>Ingrese la cantidad de juguetes comprados:</p>
+	<input type="number" id="cantidad" min="1">
+	<br><br>
+	<p>Seleccione el tipo de juguete comprado:</p>
+	<select id="juguetes">
+		<option value="monopolio">Monopolio</option>
+		<option value="ajedrez">Ajedrez</option>
+		<option value="lego">Lego</option>
+		<option value="dama">Dama</option>
+		<option value="laberinto">Laberinto</option>
+	</select>
+	<br><br>
+	<button onclick="calcularDescuento()">Calcular descuento</button>
+	<br><br>
+	<p>Importe de compra: <span id="importe"></span></p>
+	<p>Importe de descuento: <span id="descuento"></span></p>
+	<p>Importe a pagar: <span id="total"></span></p>
+	<script type="text/javascript">
+		function calcularDescuento() {
+			var cantidad = parseInt(document.getElementById("cantidad").value);
+			var juguete = document.getElementById("juguetes").value;
+			var precio = 0;
+			switch(juguete) {
+				case "monopolio":
+					precio = 70.99;
+					break;
+				case "ajedrez":
+					precio = 78.99;
+					break;
+				case "lego":
+					precio = 100.99;
+					break;
+				case "dama":
+					precio = 58.50;
+					break;
+				case "laberinto":
+					precio = 35.00;
+					break;
+			}
+			var importeCompra = cantidad * precio;
+			var descuento = 0;
+			if (cantidad < 10) {
+				descuento = importeCompra * 0.035;
+			} else if (cantidad >= 10 && cantidad <= 20) {
+				descuento = importeCompra * 0.07;
+			} else {
+				descuento = importeCompra * 0.095;
+			}
+			var importeAPagar = importeCompra - descuento;
+			document.getElementById("importe").innerHTML = importeCompra.toFixed(2);
+			document.getElementById("descuento").innerHTML = descuento.toFixed(2);
+			document.getElementById("total").innerHTML = importeAPagar.toFixed(2);
+		}
+	</script>
+</body>
+</html>
